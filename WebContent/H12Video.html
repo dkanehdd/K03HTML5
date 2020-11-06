@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>H12Video.html</title>
+</head>
+<body>
+	<h2>Javascript를 이용한 커스텀 비디오 만들기</h2>
+	<script>
+		var video;
+		
+		window.onload = function(){
+			var currentSpan = document.getElementById("currenttime");
+			var totalSpan = document.getElementById("totaltime");
+			
+			video = document.getElementById("video");
+			video.addEventListener("timeupdate", function(){
+				currentSpan.innerHTML = video.currentTime;
+				totalSpan.innerHTML = video.duration;
+			});
+		}
+		
+		function play() {
+			video.hidden = "";
+			video.play();
+		}
+		function stop() {
+			video.pause();
+		}
+		function start() {
+			video.currentTime = 0;
+			video.play();
+			
+		}
+	</script>
+	
+	<div>
+		<video id="video" width="300" height="200" src="./media/video.mp4"
+		hidden></video>
+	</div>
+	<div>
+		<input type="button" value="재생하기" onclick="play();"/>
+		<input type="button" value="일시정지" onclick="stop();"/>
+		<input type="button" value="처음부터 재생하기" onclick="start();"/><br />
+		<span id="currenttime"></span>/<span id="totaltime"></span>
+	</div>
+</body>
+</html>
